@@ -110,7 +110,7 @@ public class SavingsTransactionImportHandler implements ImportHandler {
         String receiptNumber = ImportHandlerUtils.readAsString(TransactionConstants.RECEIPT_NO_COL, row);
         String bankNumber = ImportHandlerUtils.readAsString(TransactionConstants.BANK_NO_COL, row);
         return SavingsAccountTransactionData.importInstance(amount, transactionDate, paymentTypeId, accountNumber, checkNumber, routingCode,
-                receiptNumber, bankNumber, savingsAccountId, savingsAccountTransactionEnumData, row.getRowNum(), "en", "yyyy-MM-dd");
+                receiptNumber, bankNumber, savingsAccountId, savingsAccountTransactionEnumData, row.getRowNum(), locale, dateFormat);
 
     }
 
