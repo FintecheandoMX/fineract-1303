@@ -38,6 +38,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.fineract.infrastructure.core.exception.InvalidJsonException;
 import org.apache.fineract.infrastructure.core.exception.UnsupportedParameterException;
@@ -48,6 +50,8 @@ import org.springframework.stereotype.Component;
 @Primary
 @Component
 public class FromJsonHelper {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(FromJsonHelper.class);
 
     private final Gson gsonConverter;
     private final JsonParserHelper helperDelegator;
@@ -91,6 +95,7 @@ public class FromJsonHelper {
         final List<String> unsupportedParameterList = new ArrayList<>();
         for (final String providedParameter : requestMap.keySet()) {
             if (!supportedParams.contains(providedParameter)) {
+                LOGGER.error("PARAMETRO NO SOPORTADO: "+ providedParameter);
                 unsupportedParameterList.add(providedParameter);
             }
         }
